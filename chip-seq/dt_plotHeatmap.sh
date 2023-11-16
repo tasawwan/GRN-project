@@ -31,8 +31,9 @@ computeMatrix reference-point --referencePoint center -a 1000 -b 1000 \
 -o matrix.allTFs.refPoint.mat.gz \
 --skipZeros --smartLabels --sortRegions descend
 
-plotHeatmap -m matrix.${name}.refPoint.mat.gz \
+plotHeatmap -m matrix.allTFs.refPoint.mat.gz \
 -out heatmap.allTFs.png  
+
 
 echo "done"
 #Combine narrowpeak
