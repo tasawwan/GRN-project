@@ -12,10 +12,12 @@
 module load perl
 module load anaconda/latest
 conda init bash
-conda activate /users/terahman/anaconda/reddington
+conda activate /users/terahman/anaconda/GRN
 
 mkdir motifs
 mkdir motifs/input_files
+
+# Make sure you have homer installed
 
 for i in $(basename -a neurons_10to12/*.narrowPeak) 
 do

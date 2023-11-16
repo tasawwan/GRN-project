@@ -8,6 +8,8 @@
 #SBATCH --mail-type=END
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
 
+## This script intersects all my idr peaks with the chipseq TF peaks
+
 module load bedtools
 
 mkdir intersection
