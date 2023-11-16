@@ -13,4 +13,4 @@ mkdir chipseq/slurm
 
 #Bedtools Intersect the IDR against the chipseq data
 
-#We are using the intersect with each of the files
+#Add to a table with the overlap and the percentage of peaks in chipseq data that overlap.

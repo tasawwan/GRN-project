@@ -19,8 +19,6 @@ colnames(metadata) <- c('experimentTarget','fileAccession',
 count <- 1
 num <- 1
 
-
-
 for(j in optimal$File.accession){
   print(j)
   file <- list.files(pattern = j)
