@@ -3,7 +3,7 @@
 #SBATCH -o slurm/plotHeatmap-%j.out
 #SBATCH -e slurm/plotHeatmap-%j.err
 #SBATCH -n 8
-#SBATCH -t 12:00:00
+#SBATCH -t 24:00:00
 #SBATCH --mem=64G
 #SBATCH --mail-type=END
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
