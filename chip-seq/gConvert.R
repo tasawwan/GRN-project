@@ -3,7 +3,6 @@
 report <- read.table("metadata.tsv", sep = "\t", header = T)
 optimal <- subset(report, Output.type =="optimal IDR thresholded peaks" & File.assembly == "dm6")
 
-# write.csv(optimal, "summary/optimal.csv")
 
 metadata <- data.frame(matrix(ncol = 10, nrow = nrow(optimal)))
 colnames(metadata) <- c('experimentTarget','fileAccession',
@@ -25,6 +24,9 @@ for(j in optimal$File.accession){
   metadata$experimentTarget[count] <- unlist(strsplit(optimal$Experiment.target[count], '-dmelanogaster'))
   metadata$fileAccession[count] <- optimal$File.accession[count]
   
+  chipseq_data/bed/${j}.bed.gz
+
+
   # for(n in file){
   #   print(num)
   #   fs <- file.info(n)
