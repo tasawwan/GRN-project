@@ -18,6 +18,10 @@ colnames(metadata) <- c('experimentTarget','fileAccession',
 count <- 1
 num <- 1
 
+
+
+
+
 #ChatGPT (THIS IS WRONG)
 # Loop through each input
 for (input_combination in c('ERR3975815_ERR3975819_ERR3975833_ERR3975864',
