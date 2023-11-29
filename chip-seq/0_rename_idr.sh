@@ -2,7 +2,7 @@
 #SBATCH -J rename_idr
 #SBATCH -N 1
 #SBATCH -c 2
-#SBATCH -t 24:00:00
+#SBATCH -t 1:00:00
 #SBATCH --mem=10G
 #SBATCH --mail-type=END
 #SBATCH -o slurm/rename_idr-%j.out
