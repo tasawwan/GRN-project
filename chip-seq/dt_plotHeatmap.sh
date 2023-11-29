@@ -4,7 +4,7 @@
 #SBATCH -e slurm/plotHeatmap-%j.err
 #SBATCH -n 8
 #SBATCH -t 24:00:00
-#SBATCH --mem=64G
+#SBATCH --mem=200G
 #SBATCH --mail-type=END
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
 
@@ -21,7 +21,8 @@ module load deeptoolsintervals
 module load deeptools
 
 beds=$(ls idr_intersect/*.narrowPeak)
-TFs=$(ls chipseq_data/bigwig/*.bigWig)
+TFs=$(ls chipseq_data/bigwig/*.bigWig)  #Can break this list into pieces to make more manageable files
+                                        #Make it a list of lists and run the loop for that list of lists
 
 echo "computeMatrix_reference_point"
 computeMatrix reference-point --referencePoint center -a 1000 -b 1000 \
@@ -33,7 +34,6 @@ computeMatrix reference-point --referencePoint center -a 1000 -b 1000 \
 
 plotHeatmap -m matrix.allTFs.refPoint.mat.gz \
 -out heatmap.allTFs.png  
-
 
 echo "done"
 #Combine narrowpeak

@@ -6,11 +6,11 @@ optimal <- subset(report, Output.type =="optimal IDR thresholded peaks" & File.a
 #Create a metadata file, fill in with the correct column names
 metadata <- data.frame(matrix(ncol = 10, nrow = nrow(optimal)))
 colnames(metadata) <- c('experimentTarget','fileAccession',
-                        'ERR3975815_ERR3975819-ERR3975833_ERR3975864',
+                        'ERR3975815_ERR3975819-ERR3975833_ERR3975864', #Number of peaks in the intersect with modencode
                         'ERR3975825_ERR3975848-ERR3975862_ERR3975871', 
                         'ERR3975830_ERR3975879-ERR3975820_ERR3975827', 
                         'ERR3975860_ERR3975869-ERR3975846_ERR3975875', 
-                        'percent_overlap_ERR3975815_ERR3975819-ERR3975833_ERR3975864',
+                        'percent_overlap_ERR3975815_ERR3975819-ERR3975833_ERR3975864', #Number of peaks in intersect over original
                         'percent_overlap_ERR3975825_ERR3975848-ERR3975862_ERR3975871',
                         'percent_overlap_ERR3975830_ERR3975879-ERR3975820_ERR3975827',
                         'percent_overlap_ERR3975860_ERR3975869-ERR3975846_ERR3975875')
@@ -18,7 +18,6 @@ colnames(metadata) <- c('experimentTarget','fileAccession',
 #Create a counter
 count <- 1
 num <- 1
-
 
 #Add the file accession names and the experiment targets
 for(j in optimal$File.accession){
@@ -29,7 +28,6 @@ for(j in optimal$File.accession){
   count <- count + 1
   num <- 1
 }
-
 
 ## NOT SURE WHSATS HAPPENING HERE
 
