@@ -17,22 +17,27 @@ Start in the directory you want your files to live and run the following command
     - motifs
     - idr_intersect
 
-## Step 1: Download all the chipseq files
+## Step 1: Rename the files
 ```
 sbatch ~/scripts/GRN_project/chip-seq/1_chipseq_download.sh 
 ```
 
-## Step 2: Intersect the IDR against the chipseq data 
+## Step 2: Download all the chipseq files
+```
+sbatch ~/scripts/GRN_project/chip-seq/1_chipseq_download.sh 
+```
+
+## Step 3: Intersect the IDR against the chipseq data 
 ```
 sbatch ~/scripts/GRN_project/chip-seq/2_intersect.sh 
 ```
 
-## Step 3: Convert intersection to table
+## Step 4: Convert intersection to table
 ```
 sbatch ~/scripts/GRN_project/chip-seq/3_run_gConvert.sh 
 ```
 
-## Step 4: Create Heatmap
+## Step 5: Create Heatmap
 ```
 sbatch ~/scripts/GRN_project/chip-seq/4_heatmap.sh 
 ```
