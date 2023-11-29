@@ -4,7 +4,7 @@
 #SBATCH -e slurm/plotHeatmap-%j.err
 #SBATCH -n 8
 #SBATCH -t 48:00:00
-#SBATCH --mem=150G
+#SBATCH --mem=175G
 #SBATCH --mail-type=END
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
 
@@ -59,7 +59,7 @@ for sublist in "${sublists[@]}"; do
     plotHeatmap -m heatmap/center/matrix$count.mat.gz \
     -out heatmap/center/heatmap$count.png  
 
-    count+=1
+    ((count++))
 done
 
 count=1
@@ -76,7 +76,7 @@ for sublist in "${sublists[@]}"; do
     plotHeatmap -m heatmap/scale_regions/matrix$count.mat.gz \
     -out heatmap/scale_regions/heatmap$count.png  
 
-    count+=1
+    ((count++))
 done
 
 # Move the matrix files to the matrices directory
