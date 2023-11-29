@@ -56,8 +56,8 @@ for sublist in "${sublists[@]}"; do
     -o heatmap/center/matrix$count.mat.gz \
     --skipZeros --smartLabels --sortRegions descend
 
-    plotHeatmap -m matrix$count.mat.gz \
-    -out heatmap/center/heatmap.$count.png  
+    plotHeatmap -m heatmap/center/matrix$count.mat.gz \
+    -out heatmap/center/heatmap$count.png  
 
     count+=1
 done
@@ -74,7 +74,7 @@ for sublist in "${sublists[@]}"; do
     --skipZeros --smartLabels --sortRegions descend
 
     plotHeatmap -m heatmap/scale_regions/matrix$count.mat.gz \
-    -out heatmap/scale_regions/heatmap.$count.png  
+    -out heatmap/scale_regions/heatmap$count.png  
 
     count+=1
 done
