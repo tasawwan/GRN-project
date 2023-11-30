@@ -21,10 +21,12 @@ module load deeptoolsintervals
 module load deeptools
 
 mkdir heatmap
-mkdir heatmap/center
+mkdir heatmap/refpoint
 mkdir heatmap/scale_regions
-mkdir heatmap/center/matrices
+mkdir heatmap/refpoint/matrices
 mkdir heatmap/scale_regions/matrices
+mkdir heatmap/allTFs
+mkdir heatmap/allTFs/matrices
 
 # narrowPeak files
 beds=$(ls idr_intersect/*.narrowPeak)
@@ -53,11 +55,11 @@ for sublist in "${sublists[@]}"; do
     -S $sublist \
     -R $beds \
     --binSize 50 \
-    -o heatmap/center/matrix$count.mat.gz \
+    -o heatmap/refpoint/matrices/matrix$count.refpoint.mat.gz \
     --skipZeros --smartLabels --sortRegions descend
 
-    plotHeatmap -m heatmap/center/matrix$count.mat.gz \
-    -out heatmap/center/heatmap$count.png  
+    plotHeatmap -m heatmap/refpoint/matrices/matrix$count.refpoint.mat.gz \
+    -out heatmap/refpoint/heatmap$count.refpoint.png  
 
     ((count++))
 done
@@ -70,11 +72,11 @@ for sublist in "${sublists[@]}"; do
     -S $sublist \
     -R $beds \
     --binSize 50 \
-    -o heatmap/scale_regions/matrix$count.mat.gz \
+    -o heatmap/scale_regions/matices/matrix$count.scaleregions.mat.gz \
     --skipZeros --smartLabels --sortRegions descend
 
-    plotHeatmap -m heatmap/scale_regions/matrix$count.mat.gz \
-    -out heatmap/scale_regions/heatmap$count.png  
+    plotHeatmap -m heatmap/scale_regions/matices/matrix$count.scaleregions.mat.gz \
+    -out heatmap/scale_regions/heatmap$count.scaleregions.png  
 
     ((count++))
 done
