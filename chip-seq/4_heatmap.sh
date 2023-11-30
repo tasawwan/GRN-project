@@ -43,11 +43,11 @@ len=${#TF_array[@]}
 # Split the array into sublists each containing 20 files
 declare -a sublists=()
 for ((i=0; i<$len; i+=20)); do
-    sublist=("${TF_array[@]:$i:20}")
+    sublist="${TF_array[@]:$i:20}"
     sublists+=("$sublist")
 done
 
-##### THIS ISN'T WORKING, THE INTERNAL ARRAY IS JUST ONE LONG #####
+echo ${sublists[@]}
 
 count=1
 
