@@ -47,6 +47,8 @@ for ((i=0; i<$len; i+=20)); do
     sublists+=("$sublist")
 done
 
+##### THIS ISN'T WORKING, THE INTERNAL ARRAY IS JUST ONE LONG #####
+
 count=1
 
 # Make heatmaps using reference point of center
