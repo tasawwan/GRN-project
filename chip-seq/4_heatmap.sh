@@ -81,29 +81,25 @@ for sublist in "${sublists[@]}"; do
     ((count++))
 done
 
-# Move the matrix files to the matrices directory
-mv heatmap/center/*.mat.gz heatmap/center/matrices
-mv heatmap/scale_regions/*.mat.gz heatmap/scale_regions/matrices
-
 # Now do this for all TFs
 # With reference-points
 computeMatrix reference-point --referencePoint center -a 1000 -b 1000 \
 -S $TFs \
 -R $beds \
 --binSize 50 \
--o heatmap/matrix.allTFs.refpoint.mat.gz \
+-o heatmap/allTFs/matrices/matrix.allTFs.refpoint.mat.gz \
 --skipZeros --smartLabels --sortRegions descend
 
-plotHeatmap -m heatmap/matrix.allTFs.refpoint.mat.gz \
--out heatmap/heatmap.allTFs.refpoint.png  
+plotHeatmap -m heatmap/allTFs/matrices/matrix.allTFs.refpoint.mat.gz \
+-out heatmap/allTFs/heatmap.allTFs.refpoint.png  
 
 # With scale-regions
 computeMatrix scale-regions -a 1000 -b 1000 \
 -S $TFs \
 -R $beds \
 --binSize 50 \
--o heatmap/matrix.allTFs.scaleregions.mat.gz \
+-o heatmap/allTFs/matrices/matrix.allTFs.scaleregions.mat.gz \
 --skipZeros --smartLabels --sortRegions descend
 
-plotHeatmap -m heatmap/matrix.allTFs.scaleregions.mat.gz \
--out heatmap/heatmap.allTFs.scaleregions.png  
+plotHeatmap -m heatmap/allTFs/matrices/matrix.allTFs.scaleregions.mat.gz \
+-out heatmap/allTFs/heatmap.allTFs.scaleregions.png
