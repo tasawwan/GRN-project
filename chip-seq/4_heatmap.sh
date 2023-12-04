@@ -2,6 +2,7 @@
 #SBATCH -J dt_plotHeatmap
 #SBATCH -o slurm/plotHeatmap-%j.out
 #SBATCH -e slurm/plotHeatmap-%j.err
+#SBATCH -N 1
 #SBATCH -n 8
 #SBATCH -t 48:00:00
 #SBATCH --mem=175G
@@ -74,10 +75,10 @@ for sublist in "${sublists[@]}"; do
     -S $sublist \
     -R $beds \
     --binSize 50 \
-    -o heatmap/scale_regions/matices/matrix$count.scaleregions.mat.gz \
+    -o heatmap/scale_regions/matrices/matrix$count.scaleregions.mat.gz \
     --skipZeros --smartLabels --sortRegions descend
 
-    plotHeatmap -m heatmap/scale_regions/matices/matrix$count.scaleregions.mat.gz \
+    plotHeatmap -m heatmap/scale_regions/matrices/matrix$count.scaleregions.mat.gz \
     -out heatmap/scale_regions/heatmap$count.scaleregions.png  
 
     ((count++))
