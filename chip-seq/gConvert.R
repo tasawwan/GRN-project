@@ -1,19 +1,20 @@
 
+
 #Read in the metadata and subset for only the optimal IDR peak files that use the dm6
-report <- read.table(chipseq_data/"metadata.tsv", sep = "\t", header = T)
+report <- read.table("chipseq_data/metadata.tsv", sep = "\t", header = T)
 optimal <- subset(report, Output.type =="optimal IDR thresholded peaks" & File.assembly == "dm6")
 
 #Create a metadata file, fill in with the correct column names
 metadata <- data.frame(matrix(ncol = 10, nrow = nrow(optimal)))
 colnames(metadata) <- c('experimentTarget','fileAccession',
-                        'ERR3975815_ERR3975819-ERR3975833_ERR3975864', #Number of peaks in the intersect with modencode
-                        'ERR3975825_ERR3975848-ERR3975862_ERR3975871', 
-                        'ERR3975830_ERR3975879-ERR3975820_ERR3975827', 
-                        'ERR3975860_ERR3975869-ERR3975846_ERR3975875', 
-                        'percent_overlap_ERR3975815_ERR3975819-ERR3975833_ERR3975864', #Number of peaks in intersect over original
-                        'percent_overlap_ERR3975825_ERR3975848-ERR3975862_ERR3975871',
-                        'percent_overlap_ERR3975830_ERR3975879-ERR3975820_ERR3975827',
-                        'percent_overlap_ERR3975860_ERR3975869-ERR3975846_ERR3975875')
+                        'neurons_10to12', #Number of peaks in the intersect with modencode
+                        'non', 
+                        'neurons_8to10', 
+                        'meso', 
+                        'percent_overlap_neurons_10to12', #Number of peaks in intersect over original
+                        'percent_overlap_non',
+                        'percent_overlap_neurons_8to10',
+                        'percent_overlap_meso')
 
 #Create a counter
 count <- 1
