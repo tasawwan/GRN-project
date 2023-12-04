@@ -1,6 +1,6 @@
 
 #Read in the metadata and subset for only the optimal IDR peak files that use the dm6
-report <- read.table("metadata.tsv", sep = "\t", header = T)
+report <- read.table(chipseq_data/"metadata.tsv", sep = "\t", header = T)
 optimal <- subset(report, Output.type =="optimal IDR thresholded peaks" & File.assembly == "dm6")
 
 #Create a metadata file, fill in with the correct column names
