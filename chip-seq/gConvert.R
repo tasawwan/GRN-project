@@ -29,14 +29,7 @@ files <- c()
 
 #Add the file accession names and the experiment targets
 for(j in optimal$File.accession){
-  print(j)
-  
-  #Create file name
-  file_name <- paste0(j, ".bed.gz")
-  
-  # Use file.choose() to interactively select the file or list.files() with full path
-  files <- c(files, list.files(path = "chipseq_data/bed", pattern = file_name, full.names = TRUE))
-  
+  print(j)  
   metadata$experimentTarget[count] <- unlist(strsplit(optimal$Experiment.target[count], '-dmelanogaster'))
   metadata$fileAccession[count] <- optimal$File.accession[count]
   count <- count + 1
