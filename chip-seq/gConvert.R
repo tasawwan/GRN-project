@@ -1,4 +1,8 @@
 
+#MAKE SURE TO INSTALL GPROFILER ONTO SYSTEM
+#install.packages("gprofiler2")
+
+library(gprofiler2)
 
 #Read in the metadata and subset for only the optimal IDR peak files that use the dm6
 report <- read.table("chipseq_data/metadata.tsv", sep = "\t", header = T)
@@ -48,9 +52,12 @@ head(df)
 dim(df)
 V4 <- df[4] # extract column 4 with refSeq names
 dim(V4)
+
 # Remove duplicates based on V4 columns
 uniqueV4 <- V4[!duplicated(V4$V4), ]
+
 dim(uniqueV4)
+
 # convert refSeq names to ENSG and gene names
 dfConvert <- gconvert(query = unlist(uniqueV4), organism = "dmelanogaster",
          target="ENSG", mthreshold = Inf, filter_na = TRUE)
