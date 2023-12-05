@@ -20,17 +20,26 @@ colnames(metadata) <- c('experimentTarget','fileAccession',
 count <- 1
 num <- 1
 
+#Create vector object to hold list of files
+files <- c()
+
 #Add the file accession names and the experiment targets
 for(j in optimal$File.accession){
   print(j)
-  file <- list.files(pattern = chipseq_data/bed/${j}.bed.gz) #Not sure what we're doing with this tbh
+  
+  #Create file name
+  file_name <- paste0(j, ".bed.gz")
+  
+  # Use file.choose() to interactively select the file or list.files() with full path
+  files <- c(files, list.files(path = "chipseq_data/bed", pattern = file_name, full.names = TRUE))
+  
   metadata$experimentTarget[count] <- unlist(strsplit(optimal$Experiment.target[count], '-dmelanogaster'))
   metadata$fileAccession[count] <- optimal$File.accession[count]
   count <- count + 1
   num <- 1
 }
 
-## NOT SURE WHSATS HAPPENING HERE
+##FIXED UP TO HERE
 
 #loop commands through each file
 for(i in files){
