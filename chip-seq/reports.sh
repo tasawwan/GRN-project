@@ -21,11 +21,11 @@ for i in $(ls intersection/*.bed); do
    accession=$(echo $reversed_name | cut -d'_' -f1 | rev)
    name=$(echo $full_name | rev | cut -d'_' -f2- | rev)
    lines=$(wc -l < "$i")
-   echo $name  $accession  $lines >> reports/intersection_report.tsv
+   echo -e "$name\t$accession\t$lines" >> reports/intersection_report.txt
 done
 
 #Get the number of lines in the regular files
 for i in $(ls idr_intersect/*.narrowPeak); do
    name=$(basename $i | cut -d'.' -f1)
-   echo $name  $lines >> reports/all_report.tsv
+   echo -e "$name\t$lines" >> reports/all_report.txt
 done
