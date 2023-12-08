@@ -50,6 +50,37 @@ for(i in list.files(path = "idr_intersect", pattern = "\\.narrowPeak$")) {
 
 #Get the counts of the intersection files
 
+# Initialize the empty dataframe
+intersection <- data.frame(basename = character(), accession = character(), num_lines = integer())
+
+# Get the counts of the background files
+for(i in list.files(path = "intersection", pattern = "\\.bed$")) {
+  
+  # Print the filename
+  print(i)
+
+  # Read the file
+  lines <- readLines(paste0("intersection/", i))
+
+  # Count the lines
+  num_lines <- length(lines)
+
+  # Split the filename into basename and accession, the weird stuff is the last underscore
+  split_name <- unlist(strsplit(i, "_(?=[^_]+$)", perl = TRUE))
+
+  # Get the basename and accession
+  basename <- split_name[1]
+  accession <- sub(".bed", "", split_name[2])
+
+  print(basename)
+  print(accession)
+
+  # Add the data to the data frame
+  intersection <- rbind(intersection, data.frame(basename = basename, accession = accession, num_lines = num_lines))
+}
+
+
+
 
 
 ##FIXED UP TO HERE
