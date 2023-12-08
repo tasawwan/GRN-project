@@ -18,11 +18,18 @@ Start in the directory you want your files to live and run the following command
     - idr_intersect
 
 3. Rename the IDR data files
-    ```
+    \```
     sbatch ~/scripts/GRN_project/chip-seq/1_rename_idr.sh 
     ```
 
+4. Update conda environment
+    ```
+    conda activate /users/terahman/anaconda/GRN
+    conda install -c conda-forge r-gprofiler2
+    ```
+
 ## Step 1: Download all the chipseq files
+
 ```
 sbatch ~/scripts/GRN_project/chip-seq/1_chipseq_download.sh 
 ```
