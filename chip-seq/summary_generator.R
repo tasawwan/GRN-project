@@ -26,34 +26,11 @@ for(i in optimal$File.accession){
   count <- count + 1
 }
 
-# Get the counts of the background files
-for(i in list.files(path = "idr_intersect", pattern = "\\.narrowPeak$")) {
-  
-  print(i)
-
-  # Read the file
-  lines <- readLines(paste0("idr_intersect/", i))
-
-  # Count the lines
-  num_lines <- length(lines)
-
-  # Print the number of lines
-  print(num_lines)  
-
-  #Basename
-  basename <- unlist(strsplit(i, '.narrowPeak'))
-
-  #Assign to the number of lines
-  assign(basename, num_lines)
-
-}
-
 #Get the counts of the intersection files
 
 # Initialize the empty dataframe
 intersection <- data.frame(basename = character(), accession = character(), num_lines = integer())
 
-# Get the counts of the background files
 for(i in list.files(path = "intersection", pattern = "\\.bed$")) {
   
   # Print the filename
@@ -81,52 +58,50 @@ for(i in list.files(path = "intersection", pattern = "\\.bed$")) {
 
 
 
+# Get the counts of the background files
 
+# Initialize the empty dataframe
+idr <- data.frame(basename = character(), num_lines = integer())
 
-##FIXED UP TO HERE
+for(i in list.files(path = "idr_intersect", pattern = "\\.narrowPeak$")) {
+  
+  print(i)
 
-# #loop commands through each file
-# for(i in files){
-# df <- read.table(i, sep = "\t") # read one file in files into dataframe
-# head(df)
-# dim(df)
-# V4 <- df[4] # extract column 4 with refSeq names
-# dim(V4)
+  # Read the file
+  lines <- readLines(paste0("idr_intersect/", i))
 
-# # Remove duplicates based on V4 columns
-# uniqueV4 <- V4[!duplicated(V4$V4), ]
+  # Count the lines
+  num_lines <- length(lines)
 
-# dim(uniqueV4)
+  # Print the number of lines
+  print(num_lines)  
 
-# # convert refSeq names to ENSG and gene names
-# dfConvert <- gconvert(query = unlist(uniqueV4), organism = "dmelanogaster",
-#          target="ENSG", mthreshold = Inf, filter_na = TRUE)
-# dim(dfConvert)
-# unique <- dfConvert[!duplicated(dfConvert$target), ]
-# dim(unique)
-# write.csv(unique, paste0("./convertedGenes/", i,".csv"), row.names=F)
-# }
+  #Basename
+  basename <- unlist(strsplit(i, '.narrowPeak'))
 
-# metadata <- data.frame()
+  # Add the data to the data frame
+  idr <- rbind(idr, data.frame(basename = basename, num_lines = num_lines))
+}
 
-# for(i in files){
-#   df <- read.table(i, sep = "\t") # read one file in files into dataframe
-#   V4 <- df[4] # extract column 4 with refSeq names
-#   dim(V4)
-#   # Remove duplicates based on V4 columns
-#   uniqueV4 <- unique(V4)
-#   dim(uniqueV4)
-#   # convert refSeq names to ENSG and gene names
-#   dfConvert <- gconvert(query = unlist(uniqueV4), organism = "dmelanogaster",
-#                         target="ENSG", mthreshold = Inf, filter_na = TRUE)
-#   dim(dfConvert)
-#   unique <- dfConvert[!duplicated(dfConvert$target), ]
-#   dim(unique)
-#   write.csv(unique, paste0("./convertedGenes/", i,".csv"), row.names=F)
-# }
+  # Update the meta data with the counts from the summary generator
+for(i in 1:nrow(metadata)){
 
-# genes <- length(unique$target)
-# metadata[i,1] <- files[1]
-# metadata[i,2] <- 
+  print(i)
+
+  # Get the accession
+  metadata_accession <- metadata$fileAccession[i]
+  print(metadata_accession)
+
+  for(j in 1:nrow(idr)){
+    idr_basename <- idr$basename[j]
+    print(idr_basename)
+
+    metadata[i, idr_basename] <- intersection[intersection$basename == idr_basename & intersection$accession == metadata_accession,]$num_lines
+    
+    overlap_idr_basename <- paste0("percent_overlap_", idr_basename)
+    print(overlap_idr_basename)
+    metadata[i, overlap_idr_basename] <- metadata[i, idr_basename] / idr[idr$basename == idr_basename,]$num_lines
+  }
+}
 
 write.csv(metadata, file = "summary.csv")
