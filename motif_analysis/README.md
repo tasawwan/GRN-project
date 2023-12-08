@@ -32,8 +32,8 @@ Start in the directory you want your files to live and run the following command
 3. Create conda environment according to specifications.
     ```
     module load anaconda/latest
-    conda create --name reddington
-    conda activate reddington
+    conda create --name GRN
+    conda activate GRN
     conda install -c bioconda bioconductor-deseq2
     conda install -c bioconda je-suite
     ``` 
