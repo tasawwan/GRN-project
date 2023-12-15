@@ -13,6 +13,7 @@
 
 mkdir chipseq_data
 
+# Sample List
 samples=(
 "https://www.encodeproject.org/metadata/?replicates.library.biosample.donor.organism.scientific_name=Drosophila+melanogaster&assay_slims=DNA+binding&assay_title=TF+ChIP-seq&biosample_ontology.term_name=whole+organism&assembly=dm6&files.file_type=bed+narrowPeak&files.file_type=bigWig&type=Experiment&files.analyses.status=released&files.preferred_default=true"
 https://www.encodeproject.org/files/ENCFF506HQQ/@@download/ENCFF506HQQ.bed.gz
@@ -886,6 +887,8 @@ https://www.encodeproject.org/files/ENCFF522ZND/@@download/ENCFF522ZND.bed.gz
 https://www.encodeproject.org/files/ENCFF580OBO/@@download/ENCFF580OBO.bed.gz )
 
 cd chipseq_data 
+
+# Download all chipseq files from encode
 
 for i in "${samples[@]}"
 do
