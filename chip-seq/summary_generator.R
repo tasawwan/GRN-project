@@ -5,9 +5,7 @@ optimal <- subset(report, Output.type =="optimal IDR thresholded peaks" & File.a
 
 #Create a metadata file, fill in with the correct column names
 metadata <- data.frame(matrix(ncol = 10, nrow = nrow(optimal)))
-colnames(metadata) <- c('experimentTarget','fileAccession',
-                        'neurons_10to12', #Number of peaks in the intersect with modencode
-                        )
+colnames(metadata) <- c('experimentTarget','fileAccession')
 
 #Create a counter
 count <- 1
@@ -51,7 +49,6 @@ for(i in list.files(path = "intersection", pattern = "\\.bed$")) {
 }
 
 
-
 # Get the counts of the background files
 
 # Initialize the empty dataframe
@@ -70,7 +67,7 @@ for(i in list.files(path = "idr_intersect", pattern = "\\.narrowPeak$")) {
   # Print the number of lines
   print(num_lines)  
 
-  #Basename
+  # Basename
   basename <- unlist(strsplit(i, '.narrowPeak'))
 
   # Add the data to the data frame
@@ -99,3 +96,6 @@ for(i in 1:nrow(metadata)){
 }
 
 write.csv(metadata, file = "summary.csv")
+
+
+
