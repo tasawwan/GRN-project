@@ -17,15 +17,9 @@ Start in the directory you want your files to live and run the following command
     - motifs
     - idr_intersect
 
-3. Rename the IDR data files
-    \```
+3. Rename the IDR data files and copy synaptic window files to idr_intersect directory
+    ```
     sbatch ~/scripts/GRN_project/chip-seq/1_rename_idr.sh 
-    ```
-
-4. Update conda environment
-    ```
-    conda activate /users/terahman/anaconda/GRN
-    conda install -c conda-forge r-gprofiler2
     ```
 
 ## Step 1: Download all the chipseq files
@@ -39,14 +33,12 @@ sbatch ~/scripts/GRN_project/chip-seq/1_chipseq_download.sh
 sbatch ~/scripts/GRN_project/chip-seq/2_intersect.sh 
 ```
 
-## Step 3: Convert intersection to table
+## Step 3: Create Heatmap
 ```
-sbatch ~/scripts/GRN_project/chip-seq/3_run_gConvert.sh 
+sbatch ~/scripts/GRN_project/chip-seq/3_heatmap.sh 
 ```
 
-<!-- I HAVEN'T RUN THIS YET, STILL WORKING ON THIS -->
-
-## Step 4: Create Heatmap
+## Step 4: Convert intersection to table
 ```
-sbatch ~/scripts/GRN_project/chip-seq/4_heatmap.sh 
+sbatch ~/scripts/GRN_project/chip-seq/4_generate_summary.sh 
 ```
