@@ -7,13 +7,7 @@ optimal <- subset(report, Output.type =="optimal IDR thresholded peaks" & File.a
 metadata <- data.frame(matrix(ncol = 10, nrow = nrow(optimal)))
 colnames(metadata) <- c('experimentTarget','fileAccession',
                         'neurons_10to12', #Number of peaks in the intersect with modencode
-                        'non', 
-                        'neurons_8to10', 
-                        'meso', 
-                        'percent_overlap_neurons_10to12', #Number of peaks in intersect over original
-                        'percent_overlap_non',
-                        'percent_overlap_neurons_8to10',
-                        'percent_overlap_meso')
+                        )
 
 #Create a counter
 count <- 1
