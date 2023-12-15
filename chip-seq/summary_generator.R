@@ -3,9 +3,9 @@
 report <- read.table("chipseq_data/metadata.tsv", sep = "\t", header = T)
 optimal <- subset(report, Output.type =="optimal IDR thresholded peaks" & File.assembly == "dm6")
 
-#Create a metadata file, fill in with the correct column names
-metadata <- data.frame(matrix(ncol = 10, nrow = nrow(optimal)))
-colnames(metadata) <- c('experimentTarget','fileAccession')
+#Create a summary file, fill in with the correct column names
+summary <- data.frame(matrix(ncol = 2, nrow = nrow(optimal)))
+colnames(summary) <- c('experimentTarget','fileAccession')
 
 #Create a counter
 count <- 1
@@ -13,8 +13,8 @@ count <- 1
 #Add the file accession names and the experiment targets
 for(i in optimal$File.accession){
   print(i)  
-  metadata$experimentTarget[count] <- unlist(strsplit(optimal$Experiment.target[count], '-dmelanogaster'))
-  metadata$fileAccession[count] <- optimal$File.accession[count]
+  summary$experimentTarget[count] <- unlist(strsplit(optimal$Experiment.target[count], '-dmelanogaster'))
+  summary$fileAccession[count] <- optimal$File.accession[count]
   count <- count + 1
 }
 
@@ -75,27 +75,27 @@ for(i in list.files(path = "idr_intersect", pattern = "\\.narrowPeak$")) {
 }
 
   # Update the meta data with the counts from the summary generator
-for(i in 1:nrow(metadata)){
+for(i in 1:nrow(summary)){
 
   print(i)
 
   # Get the accession
-  metadata_accession <- metadata$fileAccession[i]
-  print(metadata_accession)
+  summary_accession <- summary$fileAccession[i]
+  print(summary_accession)
 
   for(j in 1:nrow(idr)){
     idr_basename <- idr$basename[j]
     print(idr_basename)
 
-    metadata[i, idr_basename] <- intersection[intersection$basename == idr_basename & intersection$accession == metadata_accession,]$num_lines
+    summary[i, idr_basename] <- intersection[intersection$basename == idr_basename & intersection$accession == summary_accession,]$num_lines
     
     overlap_idr_basename <- paste0("percent_overlap_", idr_basename)
     print(overlap_idr_basename)
-    metadata[i, overlap_idr_basename] <- metadata[i, idr_basename] / idr[idr$basename == idr_basename,]$num_lines
+    summary[i, overlap_idr_basename] <- summary[i, idr_basename] / idr[idr$basename == idr_basename,]$num_lines
   }
 }
 
-write.csv(metadata, file = "summary.csv")
+write.csv(summary, file = "summary.csv")
 
 
 
