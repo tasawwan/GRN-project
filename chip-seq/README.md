@@ -15,6 +15,7 @@ Start in the directory you want your files to live and run the following command
 2. Copy the necessary files
     ```
     sbatch ~/scripts/GRN_project/chip-seq/0_setup_files.sh 
+    sbatch ~/scripts/GRN_project/chip-seq/0_synaptic.sh 
     ```
 
 ## Step 1: Download all the chipseq files

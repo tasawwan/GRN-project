@@ -4,7 +4,7 @@
 #SBATCH -e slurm/intersect-%j.err
 #SBATCH -n 8
 #SBATCH -t 12:00:00
-#SBATCH --mem=32G
+#SBATCH --mem=10G
 #SBATCH --mail-type=END
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
 
