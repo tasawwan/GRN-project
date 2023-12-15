@@ -5,9 +5,11 @@
 #SBATCH -N 1
 #SBATCH -n 8
 #SBATCH -t 48:00:00
-#SBATCH --mem=175G
+#SBATCH --mem=200G
 #SBATCH --mail-type=END
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
+
+## This scripts generates a heatmap of IDR x TF peaks
 
 module load python
 module load numpy
@@ -43,6 +45,7 @@ len=${#TF_array[@]}
 
 # Split the array into sublists each containing 20 files
 declare -a sublists=()
+
 for ((i=0; i<$len; i+=20)); do
     sublist="${TF_array[@]:$i:20}"
     sublists+=("$sublist")

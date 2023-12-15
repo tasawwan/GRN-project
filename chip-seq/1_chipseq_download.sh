@@ -9,6 +9,8 @@
 #SBATCH -e slurm/download_files-%j.err
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
 
+## This scripts downloads all the chipseq files
+
 #Our Search Metadata
 
 mkdir chipseq_data

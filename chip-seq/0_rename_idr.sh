@@ -9,6 +9,9 @@
 #SBATCH -e slurm/rename_idr-%j.err
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
 
+## This script renames the IDR output files to match the time point names and copies
+## the synaptic gene subsets to the directory
+
 # Rename the IDR output files to match the time point names
 cd idr_intersect
 mv ERR3975815_ERR3975819-ERR3975833_ERR3975864_intersect.narrowPeak neurons_10to12.narrowPeak

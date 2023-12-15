@@ -33,12 +33,12 @@ sbatch ~/scripts/GRN_project/chip-seq/1_chipseq_download.sh
 sbatch ~/scripts/GRN_project/chip-seq/2_intersect.sh 
 ```
 
-## Step 3: Create Heatmap
+## Step 3: Create Heatmap (run concurrently with step 2)
 ```
 sbatch ~/scripts/GRN_project/chip-seq/3_heatmap.sh 
 ```
 
-## Step 4: Convert intersection to table
+## Step 4: Convert intersection to table (relies on step 2)
 ```
 sbatch ~/scripts/GRN_project/chip-seq/4_generate_summary.sh 
 ```
