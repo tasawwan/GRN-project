@@ -95,7 +95,9 @@ for(i in 1:nrow(summary)){
   }
 }
 
-write.csv(summary, file = "summary.csv")
+write.csv(summary, file = "summary_files/summary.csv")
+write.csv(idr, file = "summary_files/idr.csv")
+write.csv(intersection, file = "summary_files/intersection.csv")
 
 
 

@@ -12,14 +12,9 @@ Start in the directory you want your files to live and run the following command
     mkdir chipseq/slurm
     ```
 
-2. Copy the following directories from the motif analysis directory to this chipseq directory.
-
-    - motifs
-    - idr_intersect
-
-3. Rename the IDR data files and copy synaptic window files to idr_intersect directory
+2. Copy the necessary files
     ```
-    sbatch ~/scripts/GRN_project/chip-seq/1_rename_idr.sh 
+    sbatch ~/scripts/GRN_project/chip-seq/0_setup_files.sh 
     ```
 
 ## Step 1: Download all the chipseq files
