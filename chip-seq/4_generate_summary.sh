@@ -3,9 +3,9 @@
 #SBATCH -o slurm/generate_summary-%j.out
 #SBATCH -e slurm/generate_summary-%j.err
 #SBATCH -N 1
-#SBATCH -n 8
-#SBATCH -t 12:00:00
-#SBATCH --mem=10G
+#SBATCH -n 2
+#SBATCH -t 1:00:00
+#SBATCH --mem=1G
 #SBATCH --mail-type=END
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
 
