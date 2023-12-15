@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH -J run gConvert
-#SBATCH -o slurm/gConvert-%j.out
-#SBATCH -e slurm/gConvert-%j.err
+#SBATCH -J generate_summary
+#SBATCH -o slurm/generate_summary-%j.out
+#SBATCH -e slurm/generate_summary-%j.err
 #SBATCH -n 8
 #SBATCH -t 12:00:00
 #SBATCH --mem=32G
