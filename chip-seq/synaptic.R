@@ -6,5 +6,5 @@ for(i in list.files(path = "idr_intersect/synaptic_genes", pattern = "\\.tsv$"))
     unique_rows <- unique(selected_columns)
     
     basename <- unlist(strsplit(i, '.tsv'))
-    write.table(unique_rows, file = paste0("idr_intersect/", basename, ".narrowPeak"), sep = "\t", row.names = FALSE, col.names = FALSE)
+    write.table(unique_rows, file = paste0("idr_intersect/", basename, ".narrowPeak"), sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 }
