@@ -5,11 +5,15 @@
 # last modified: "02/20/2024"
 #####
 
+# Install packages
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("ChIPseeker")
+BiocManager::install("clusterProfiler")
+BiocManager::install("TxDb.Dmelanogaster.UCSC.dm3.ensGene")
 
-## loading packages
+
+# Load packages
 library(ChIPseeker)
 library(TxDb.Dmelanogaster.UCSC.dm3.ensGene)
 txdb <- TxDb.Dmelanogaster.UCSC.dm3.ensGene
@@ -27,8 +31,13 @@ file_names <- c("neurons_10to12_only.narrowPeak",
 # Read each file
 files <- lapply(file_names, function(file_name) {
   file_path <- file.path(folder_path, file_name)
-  readPeakFile(file_path)
+  file_path
 })
+
+# ChIP peak annotation comparision
+peakAnnoList <- lapply(files, annotatePeak, TxDb=txdb,
+                       tssRegion=c(-3000, 3000), verbose=FALSE)
+plotAnnoBar(peakAnnoList)
 
 
 # We want to see peaks of accessible regions are at promoters, at introns, exons, and intergenic regions
