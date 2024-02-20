@@ -11,7 +11,7 @@
 
 ## This script generates a summary spreadsheet of the IDR peaks
 
-module load R/4.1.0
+module load r/4.2.2
 module load gcc/10.2 pcre2/10.35 intel/2020.2 texlive/2018
 
 mkdir ChIPseq
