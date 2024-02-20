@@ -38,3 +38,8 @@ sbatch ~/scripts/GRN_project/chip-seq/3_heatmap.sh
 ```
 sbatch ~/scripts/GRN_project/chip-seq/4_generate_summary.sh 
 ```
+
+## Step 5: ChIPSeq (NOT FINISHED YET)
+```
+sbatch ~/scripts/GRN_project/chip-seq/5_ChIPseeeker.sh 
+```

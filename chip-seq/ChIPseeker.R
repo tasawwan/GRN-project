@@ -1,8 +1,8 @@
 #####
 # title: "ChIPseeker"
-# author: "James Kentro"
-# date: "09/06/2023"
-# last modified: "09/06/2023"
+# author: "Tas Rahman, modified from script by James Kentro"
+# date: "02/20/2024"
+# last modified: "02/20/2024"
 #####
 
 # ## try http:// if https:// URLs are not supported
