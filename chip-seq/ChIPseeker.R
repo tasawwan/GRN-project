@@ -31,6 +31,11 @@ file_names <- c("neurons_10to12_only.narrowPeak",
                 "neurons_10to12_only_synaptic_10k.narrowPeak", 
                 "neurons_10to12_only_synaptic_50k.narrowPeak")
 
+# #If running from command line and want to change the files being used uncomment this
+# args <- commandArgs(trailingOnly = TRUE)
+# folder_path = args[1]
+# file_names = args[-1]
+
 # Read each file
 files <- lapply(file_names, function(file_name) {
   file_path <- file.path(folder_path, file_name)
@@ -48,7 +53,10 @@ names(peakAnnoList) <- file_names
 plotAnnoBar(peakAnnoList, title="Peak Annotation")
 
 # Save AnnoBar plot
-ggsave(filename = "ChiPSeeker/Peak_Annotation.png", scale = 1)
+ggsave(filename = "ChiPSeeker/Peak_Annotation.png", scale = 2)
+
+# I want to get the different narrowpeaks out of each one now
+
 
 # Now we want to subset each of these files, we want distal intergenic and promoters (all shoved together) and everything else together
 # Ideally we want every category as its own thing

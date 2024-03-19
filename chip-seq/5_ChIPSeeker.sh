@@ -16,4 +16,14 @@ module load gcc/10.2 pcre2/10.35 intel/2020.2 texlive/2018
 
 mkdir ChiPSeeker
 
-R --vanilla < ~/scripts/GRN_project/chip-seq/ChIPseeker.R
+files=()
+folder="idr_intersect"
+
+for file in $(ls idr_intersect/neurons_10to12_only*.narrowPeak)
+do
+    file_name=$(basename $file)
+    echo $file_name
+    files+=("$file_name")
+done
+
+R --vanilla --args $folder ${files[@]} < ~/scripts/GRN_project/chip-seq/ChIPseeker.R
