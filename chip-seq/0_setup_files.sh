@@ -9,10 +9,10 @@
 #SBATCH -e slurm/rename_idr-%j.err
 #SBATCH --mail-user=tasawwar_rahman@brown.edu
 
-
-## Rename the IDR output files to match the time point names
+## Copies the folder from the motif analysis
 cp -r ../motif_analysis/idr_intersect .
 
+## Rename the IDR output files to match the time point names
 cd idr_intersect
 mv ERR3975815_ERR3975819-ERR3975833_ERR3975864_intersect.narrowPeak neurons_10to12.narrowPeak
 mv ERR3975825_ERR3975848-ERR3975862_ERR3975871_intersect.narrowPeak non.narrowPeak

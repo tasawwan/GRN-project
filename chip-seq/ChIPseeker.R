@@ -40,6 +40,8 @@ peakAnnoList <- lapply(files, annotatePeak, TxDb=txdb,
 plotAnnoBar(peakAnnoList)
 
 
+
+
 # We want to see peaks of accessible regions are at promoters, at introns, exons, and intergenic regions
 # We are going to run this on our 4 10 to 12 only files in the idr_intersection folder
 
