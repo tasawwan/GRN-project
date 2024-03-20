@@ -56,6 +56,15 @@ plotAnnoBar(peakAnnoList, title="Peak Annotation")
 ggsave(filename = "ChiPSeeker/Peak_Annotation.png", scale = 2)
 
 # I want to get the different narrowpeaks out of each one now
+# Loop over the list of csAnno objects
+for(i in seq_along(peakAnnoList)) {
+  # Convert the csAnno object to a data frame
+  df <- as.data.frame(peakAnnoList[[i]])
+  
+  # Create a variable with the name of the csAnno object and assign the data frame to it
+  assign(names(peakAnnoList)[i], df)
+}
+
 
 
 # Now we want to subset each of these files, we want distal intergenic and promoters (all shoved together) and everything else together
