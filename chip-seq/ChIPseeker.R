@@ -86,10 +86,8 @@ ggsave(filename = "ChiPSeeker/Peak_Annotation.png", scale = 2)
 #Upset plot
 for(i in seq_along(dfList)){
   df <- dfList[i]
-  upsetplot(df)
+  upsetplot(as.data.frame(df))
 }
-
-peakAnnoList[i]
 
 ## Save and subset the annotations
 for(i in seq_along(peakAnnoList)) {
