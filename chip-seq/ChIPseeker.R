@@ -13,6 +13,7 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install("ChIPseeker")
 BiocManager::install("clusterProfiler")
 BiocManager::install("TxDb.Dmelanogaster.UCSC.dm3.ensGene")
+install.packages("UpSetR")
 
 
 ## Load packages
@@ -21,6 +22,7 @@ library(TxDb.Dmelanogaster.UCSC.dm3.ensGene)
 txdb <- TxDb.Dmelanogaster.UCSC.dm3.ensGene
 library(clusterProfiler)
 library(ggplot2)
+library(UpSetR)
 
 ## Load Data
 # Define the path to the idr_intersect folder
@@ -65,40 +67,81 @@ peakAnnoList <- lapply(peaks, function(gr) {
   annotatePeak(gr, TxDb=txdb, tssRegion=c(-3000, 3000), verbose=FALSE)
 })
 
+# Summary
+peakAnnoList
+#Sink is used to capture output into a file
+sink("ChiPSeeker/annotation_summary.txt")
+peakAnnoList
+sink()
+
+
+## Visualize the annotations
 # Plot annotation barplot
 plotAnnoBar(peakAnnoList, title="Peak Annotation")
 
 # Save AnnoBar plot
 ggsave(filename = "ChiPSeeker/Peak_Annotation.png", scale = 2)
 
-# Create dataframes for the annotations and write as a narrowpeak
+
+#Upset plot
+for(i in seq_along(dfList)){
+  df <- dfList[i]
+  upsetplot(df)
+}
+
+peakAnnoList[i]
+
+## Save and subset the annotations
 for(i in seq_along(peakAnnoList)) {
+  
+  print(names(peakAnnoList)[i])
+
+  ## Save the annotated files
   # Convert the csAnno object to a data frame
   df <- as.data.frame(peakAnnoList[[i]])
   
   # Create a variable with the name of the csAnno object and assign the data frame to it
-  assign(paste0("annotated_", names(peakAnnoList)[i], df))
+  assign(paste0("annotated_", names(peakAnnoList)[i]), df)
 
   # Save the files to a folder
   write.table(df, file = paste0("ChiPSeeker/annotations_all/annotated_", names(peakAnnoList)[i]), sep="\t", quote=FALSE, row.names=FALSE)
 
-  # Now I want to subset these files by the annotation in the annotation column
+  ## Subset the annotated files
+
+  # Edit the annotation column to group introns and exons
+  # Loop over the unique annotations in the data frame
+  for (j in unique(df$annotation)) {
+    # Define the subset type based on the annotation
+    if (grepl("intron 1 of", j)) {
+      subset_type <- "First-Intron"
+    } else if (grepl("intron", j) && !grepl("intron 1 of", j)) {
+      subset_type <- "Other-Intron"
+    } else if (grepl("exon 1 of", j)) {
+      subset_type <- "First-Exon"
+    } else if (grepl("exon", j) && !grepl("exon 1 of", j)) {
+      subset_type <- "Other-Exon"
+    } else {
+      subset_type <- j
+    }
+    
+    # Replace the annotation in the data frame
+    df$annotation[df$annotation == j] <- subset_type
+  }
+  
   for (j in unique(df$annotation)) {
     subset_df <- df[df$annotation == j,]
-    
+    # Replace spaces in j with dashes
+    subset_type <- gsub(" ", "-", j)
+    subset_name <- paste0(subset_type,"_", names(peakAnnoList)[i])
+    print(subset_name)
+
+    subset_name <- paste0(subset_type,"_", names(peakAnnoList)[i])
+    print(subset_name)
+
     #save subset dataframe
-    assign(paste0(j,"_", names(peakAnnoList)[i]), subset_df)
-    
+    assign(subset_name, subset_df)
+
     # Save to table
-    write.table(subset_df, file = paste0("ChiPSeeker/annotations_subset/", j, "_", names(peakAnnoList)[i]), sep="\t", quote=FALSE, row.names=FALSE)
+    write.table(subset_df, file = paste0("ChiPSeeker/annotations_subset/", subset_name), sep="\t", quote=FALSE, row.names=FALSE)
   }
 }
-
-
-
-# Now we want to subset each of these files, we want distal intergenic and promoters (all shoved together) and everything else together
-# Ideally we want every category as its own thing
-
-
-# We want to see peaks of accessible regions are at promoters, at introns, exons, and intergenic regions
-# We are going to run this on our 4 10 to 12 only files in the idr_intersection folder
