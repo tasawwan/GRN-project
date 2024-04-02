@@ -9,7 +9,6 @@ Start in the directory you want your files to live and run the following command
 ## Step 0: Prelim steps.
 
 1. Make depository for output files. 
-    
     ```
     mkdir slurm
     ```
