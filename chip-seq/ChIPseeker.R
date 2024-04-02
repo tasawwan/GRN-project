@@ -47,7 +47,7 @@ peaks <- lapply(file_names, function(file_name) {
 })
 names(peaks) <- file_names
 
-## Inspect the files in r studio 
+## Inspect the files in r studio
 # Read peak files into a list of dataframes for inspection
 dfList <- lapply(file_names, function(file_name) {
   file_path <- file.path(folder_path, file_name)
@@ -80,7 +80,7 @@ sink()
 plotAnnoBar(peakAnnoList, title="Peak Annotation")
 
 # Save AnnoBar plot
-ggsave(filename = "ChiPSeeker/Peak_Annotation.png", scale = 2)
+ggsave(filename = "ChiPSeeker/Visualizations/Peak_Annotation.png", scale = 2)
 
 
 #Upset plot

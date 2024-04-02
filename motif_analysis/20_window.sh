@@ -11,6 +11,6 @@
 
 module load bedtools/2.26.0
 
-bedtools window -w 3000 -a ~/data/terahman/synaptic_genes.bed.gz -b neurons_10to12/10to12_only.narrowPeak > neurons_10to12/10to12_synaptic_3k.narrowPeak
-bedtools window -w 10000 -a ~/data/terahman/synaptic_genes.bed.gz -b neurons_10to12/10to12_only.narrowPeak > neurons_10to12/10to12_synaptic_10k.narrowPeak
-bedtools window -w 50000 -a ~/data/terahman/synaptic_genes.bed.gz -b neurons_10to12/10to12_only.narrowPeak > neurons_10to12/10to12_synaptic_50k.narrowPeak
+bedtools window -w 3000 -a ~/data/terahman/synaptic_genes.bed.gz -b neurons_10to12/10to12_only.narrowPeak > neurons_10to12/10to12_only_synaptic_3k.narrowPeak
+bedtools window -w 10000 -a ~/data/terahman/synaptic_genes.bed.gz -b neurons_10to12/10to12_only.narrowPeak > neurons_10to12/10to12_only_synaptic_10k.narrowPeak
+bedtools window -w 50000 -a ~/data/terahman/synaptic_genes.bed.gz -b neurons_10to12/10to12_only.narrowPeak > neurons_10to12/10to12_only_synaptic_50k.narrowPeak
